@@ -134,10 +134,7 @@ def player_numbers(team_names)
 
 
 
-
-
-
-
+=begin
 def player_stats(player_name)
 stats = {}
 game_hash.collect do |home_or_away, team_info|
@@ -155,6 +152,33 @@ game_hash.collect do |home_or_away, team_info|
 end
 stats
 end
+=end
+
+
+def player_stats(player_name)
+  stats = {}
+  game_hash[:home][:players].collect do |names, details|
+    if names == player_name
+       details.collect do |k, v|
+         stats[k] = v
+       end
+    end
+  end
+  
+  game_hash[:away][:players].collect do |names, details|
+    if names == player_name
+      details.collect do |k, v|
+         stats[k] = v
+       end
+    end
+  end
+  stats
+end
+
+
+
+
+
 
 
 
